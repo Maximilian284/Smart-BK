@@ -1,4 +1,4 @@
-id,nome,cognome
+id,nome,cognome,numero_carta,pin
 1,Mario,Rossi,10000,213
 2,Michele,Verdi,20000,432
 3,Massimiliano,Prandi,47643,441
