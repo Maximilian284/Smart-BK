@@ -38,25 +38,35 @@ def load_transactions():
 
 		transactions.append({
 			"id" : int(csv_list[i][0]),
-			"movimento" : int(csv_list[i][1])
+			"movimento" : int(csv_list[i][1]),
+			"timestamp" : csv_list[i][2]
 			})
 
 	return transactions
 
 
 def print_data(data):
+	print("|ID   |NOME           |COGNOME        |SALDO               |")
 	for i in data:
-		print("|"+ str(i["id"])+" "*(5-len(str(i["id"])))+"|", end = "")
-		print(i["nome"]+" "*(15-len(i["nome"]))+"|", end = "")
-		print(i["cognome"]+" "*(15-len(i["cognome"]))+"|", end = "")
+		print("|"+ str(i["id"])+" "*(5-len(str(i["id"])))+"|", end="")
+		print(i["nome"]+" "*(15-len(i["nome"]))+"|", end="")
+		print(i["cognome"]+" "*(15-len(i["cognome"]))+"|", end="")
 		print(" "*(20-len(str(i["saldo"])))+str(i["saldo"])+"|")
 
 
 def print_transactions(transactions):
+	print("|ID   |MOVIMENTO      |TIMESTAMP           |")
 	for i in transactions:
-		print("|"+ str(i["id"])+" "*(5-len(str(i["id"])))+"|", end = "")
-		print(" "*(15-len(str(i["movimento"])))+str(i["movimento"])+"|")
+		print("|"+ str(i["id"])+" "*(5-len(str(i["id"])))+"|", end="")
+		print(" "*(15-len(str(i["movimento"])))+str(i["movimento"])+"|", eend="")
+		print(" "*(20-len(str(i["timestamp"])))+str(i["timestamp"])+"|")
 
+def print_info(data):
+	print("|ID   |N. CARTA |PIN |")
+	for i in data:
+		print("|"+ str(i["id"])+" "*(5-len(str(i["id"])))+"|", end = "")
+		print(" "*(9-len(str(i["numero_carta"])))+str(i["numero_carta"])+"|", end="")
+		print(" "*(4-len(str(i["pin"])))+str(i["pin"])+"|")
 
 def save_data(data):
 	with open("Anagrafica_conti.csv", "w") as file:
