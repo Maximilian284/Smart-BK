@@ -1,7 +1,6 @@
 import csv, datetime
 from random import randint
 
-
 def load_data():
 	with open("Anagrafica_conti.csv", "r") as file:
 		csv_list = list(csv.reader(file))
@@ -27,7 +26,6 @@ def load_data():
 
 	return data
 
-
 def load_transactions():
 	with open("SaldoMovimento_conti.csv", "r") as file:
 		csv_list = list(csv.reader(file))
@@ -44,7 +42,6 @@ def load_transactions():
 
 	return transactions
 
-
 def print_data(data):
 	print("|ID   |NOME           |COGNOME        |SALDO               |")
 	for i in data:
@@ -52,7 +49,6 @@ def print_data(data):
 		print(i["nome"]+" "*(15-len(i["nome"]))+"|", end="")
 		print(i["cognome"]+" "*(15-len(i["cognome"]))+"|", end="")
 		print(" "*(20-len(str(i["saldo"])))+str(i["saldo"])+"|")
-
 
 def print_transactions(transactions):
 	print("|ID   |MOVIMENTO      |TIMESTAMP           |")
@@ -81,7 +77,6 @@ def save_data(data):
 		for i in range(len(data)):
 			file.write(str(data[i]["id"])+","+str(data[i]["saldo"])+"\n")
 
-
 def add_user(data):
 	_id_ = int(data[len(data)-1]["id"]) + 1 
 	nome = input("Nome > ")
@@ -109,7 +104,6 @@ def add_user(data):
 
 	return data
 
-
 def login(data):
 	numero_carta = int(input("Numero carta di credito > "))
 	pin = int(input("Pin carta di credito > "))
@@ -122,13 +116,11 @@ def login(data):
 		print("Identificazione non avvenuta.")
 		return -1
 
-
 def add_transactions(_id_, cash):
 	time = str(datetime.datetime.now()).split(".")[0]
 
 	with open("SaldoMovimento_conti.csv", "a") as file:
 		file.write(str(_id_)+","+str(cash)+","+time+"\n")
-
 
 def add_cash(data, index):
 	cash = int(input("Inserisci il denaro che vuoi depositare > "))
@@ -139,7 +131,6 @@ def add_cash(data, index):
 	add_transactions(data[index]["id"], cash)
 
 	save_data(data)
-
 
 def request_cash(data, index):
 	while True:
@@ -158,7 +149,6 @@ def request_cash(data, index):
 
 	save_data(data)
 
-
 def get_balance(data):
 	_id_ = int(input("Inserisci l'id > "))
 
@@ -168,7 +158,6 @@ def get_balance(data):
 			break
 	else:
 		print("Non esiste corrispondenza tra l'id di input e il database.")
-
 
 def get_transactions(data):
 	_id_ = int(input("Inserisci l'id > "))
