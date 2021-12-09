@@ -1,4 +1,4 @@
-import csv
+import csv, datetime
 from random import randint
 
 
@@ -114,8 +114,10 @@ def login(data):
 
 
 def add_transactions(_id_, cash):
+	time = str(datetime.datetime.now()).split(".")[0]
+
 	with open("SaldoMovimento_conti.csv", "a") as file:
-		file.write(str(_id_)+","+str(cash)+"\n")
+		file.write(str(_id_)+","+str(cash)+","+time+"\n")
 
 
 def add_cash(data, index):
